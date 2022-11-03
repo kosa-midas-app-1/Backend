@@ -1,5 +1,7 @@
 package com.example.jobda.domain.company.controller.dto.response
 
+import java.util.UUID
+
 /**
  *
  * SearchCompanyResponse
@@ -12,6 +14,7 @@ data class SearchCompanyResponse(
     val companies: List<CompanyElement>
 ) {
     data class CompanyElement(
+        val id: UUID,
         val name: String,
         val managerName: String,
         val managerPhoneNumber: String

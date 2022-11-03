@@ -23,6 +23,7 @@ class SearchCompanyService(
             val manager = it.managerEntity!!
 
             SearchCompanyResponse.CompanyElement(
+                id = it.id,
                 name = it.name,
                 managerName = manager.name,
                 managerPhoneNumber = manager.phoneNumber
