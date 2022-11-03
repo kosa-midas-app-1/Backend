@@ -27,7 +27,7 @@ import javax.persistence.Table
 @Table(name = "tbl_notice")
 class NoticeEntity(
 
-    override val id: UUID,
+    override val id: UUID = UUID(0, 0),
 
     @field:Column(columnDefinition = "TEXT", nullable = false)
     val content: String,

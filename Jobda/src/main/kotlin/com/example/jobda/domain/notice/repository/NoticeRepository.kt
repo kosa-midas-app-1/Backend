@@ -15,4 +15,6 @@ import java.util.UUID
  **/
 @Repository
 interface NoticeRepository : CrudRepository<NoticeEntity, UUID> {
+    fun findByCompanyEntityId(companyId: UUID): List<NoticeEntity>
+    fun findTopByCompanyEntityIdOrderByCreatedAtDesc(companyId: UUID): NoticeEntity?
 }
