@@ -16,7 +16,7 @@ import javax.persistence.Table
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.0.1
+ * @version 1.1.0
  **/
 @Entity
 @Table(name = "tbl_manager")

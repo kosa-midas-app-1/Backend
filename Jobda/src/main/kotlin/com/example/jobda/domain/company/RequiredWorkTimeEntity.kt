@@ -17,7 +17,7 @@ import javax.persistence.Table
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.0.0
+ * @version 1.0.1
  **/
 @Entity
 @Table(name = "tbl_requried_work_time")
@@ -36,5 +36,6 @@ class RequiredWorkTimeEntity(
 
     @field:Column(columnDefinition = "DATETIME", nullable = false)
     val endAt: LocalDateTime
+
 ) {
 }

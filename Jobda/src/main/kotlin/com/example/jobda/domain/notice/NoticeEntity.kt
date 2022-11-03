@@ -20,7 +20,7 @@ import javax.persistence.Table
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.0.0
+ * @version 1.0.1
  **/
 @EntityListeners(AuditingEntityListener::class)
 @Entity
@@ -40,5 +40,5 @@ class NoticeEntity(
     @field:JoinColumn(name = "company_id",columnDefinition = "VARCHAR(16)", nullable = false)
     val companyEntity: CompanyEntity?
 
-    ) : BaseUUIDEntity() {
+) : BaseUUIDEntity() {
 }
