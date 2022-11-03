@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import javax.validation.Valid
@@ -18,8 +19,9 @@ import javax.validation.Valid
  *
  * @author ljcha
  * @date 2022-11-04
- * @version 1.0.0
+ * @version 1.0.1
  **/
+@RequestMapping("/managers")
 @RestController
 class ManagerRestController(
     private val updateMyInfoService: UpdateMyInfoService,

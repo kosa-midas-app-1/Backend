@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestHeader
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import javax.validation.Valid
@@ -23,8 +24,9 @@ import javax.validation.Valid
  *
  * @author ljcha
  * @date 2022-11-04
- * @version 1.1.0
+ * @version 1.1.1
  **/
+@RequestMapping("/auth")
 @RestController
 class AuthRestController(
     private val singUpManagerService: SignUpManagerService,
