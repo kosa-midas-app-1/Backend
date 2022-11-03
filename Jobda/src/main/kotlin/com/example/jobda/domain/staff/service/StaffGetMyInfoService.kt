@@ -1,7 +1,7 @@
 package com.example.jobda.domain.staff.service
 
 import com.example.jobda.domain.manager.exception.StaffNotFoundException
-import com.example.jobda.domain.staff.controller.dto.response.GetMyInfoResponse
+import com.example.jobda.domain.staff.controller.dto.response.StaffGetMyInfoResponse
 import com.example.jobda.domain.staff.repository.StaffRepository
 import com.example.jobda.infrastructure.security.util.SecurityUtil
 import org.springframework.data.repository.findByIdOrNull
@@ -16,17 +16,17 @@ import org.springframework.stereotype.Service
  * @version 1.0.0
  **/
 @Service
-class GetMyInfoService(
+class StaffGetMyInfoService(
     private val securityUtil: SecurityUtil,
     private val staffRepository: StaffRepository
 ) {
 
-    fun execute(): GetMyInfoResponse {
+    fun execute(): StaffGetMyInfoResponse {
 
         val staffId = securityUtil.getCurrentUserId()
         val staffEntity = staffRepository.findByIdOrNull(staffId) ?: throw StaffNotFoundException
         val companyEntity = staffEntity.companyEntity
-            ?: return GetMyInfoResponse(
+            ?: return StaffGetMyInfoResponse(
                 name = staffEntity.name,
                 phoneNumber = staffEntity.phoneNumber,
                 email = staffEntity.email,
@@ -34,7 +34,7 @@ class GetMyInfoService(
                 position = null
             )
 
-        return GetMyInfoResponse(
+        return StaffGetMyInfoResponse(
             name = staffEntity.name,
             phoneNumber = staffEntity.phoneNumber,
             email = staffEntity.email,

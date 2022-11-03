@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service
  * @version 1.0.0
  **/
 @Service
-class UpdateMyInfoService(
+class StaffUpdateMyInfoService(
     private val securityUtil: SecurityUtil,
     private val staffRepository: StaffRepository
 ) {

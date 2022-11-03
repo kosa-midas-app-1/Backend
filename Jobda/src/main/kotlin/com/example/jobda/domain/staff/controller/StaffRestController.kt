@@ -3,17 +3,17 @@ package com.example.jobda.domain.staff.controller
 import com.example.jobda.domain.staff.controller.dto.request.UpdateMyInfoRequest
 import com.example.jobda.domain.staff.controller.dto.request.UpdateStaffRequest
 import com.example.jobda.domain.staff.controller.dto.response.AverageResponse
-import com.example.jobda.domain.staff.controller.dto.response.GetMyInfoResponse
+import com.example.jobda.domain.staff.controller.dto.response.StaffGetMyInfoResponse
 import com.example.jobda.domain.staff.controller.dto.response.GetStaffDetailsResponse
 import com.example.jobda.domain.staff.controller.dto.response.GetStaffListResponse
 import com.example.jobda.domain.staff.controller.dto.response.GetTimeLineResponse
 import com.example.jobda.domain.staff.service.AttendanceService
 import com.example.jobda.domain.staff.service.AverageService
-import com.example.jobda.domain.staff.service.GetMyInfoService
+import com.example.jobda.domain.staff.service.StaffGetMyInfoService
 import com.example.jobda.domain.staff.service.GetStaffDetailsService
 import com.example.jobda.domain.staff.service.GetStaffListService
 import com.example.jobda.domain.staff.service.GetTimeLineService
-import com.example.jobda.domain.staff.service.UpdateMyInfoService
+import com.example.jobda.domain.staff.service.StaffUpdateMyInfoService
 import com.example.jobda.domain.staff.service.UpdateStaffInfoService
 import com.example.jobda.domain.staff.service.UpdateStaffLeaveEarlyService
 import org.springframework.http.HttpStatus
@@ -45,8 +45,8 @@ class StaffRestController(
     private val averageService: AverageService,
     private val getTimeListService: GetTimeLineService,
 
-    private val getMyInfoService: GetMyInfoService,
-    private val updateMyInfoService: UpdateMyInfoService,
+    private val getMyInfoService: StaffGetMyInfoService,
+    private val updateMyInfoService: StaffUpdateMyInfoService,
     private val attendanceService: AttendanceService
 ) {
 
@@ -99,7 +99,7 @@ class StaffRestController(
     }
 
     @GetMapping("/myself")
-    fun getMyInfo(): GetMyInfoResponse {
+    fun managerGetMyInfo(): StaffGetMyInfoResponse {
         return getMyInfoService.execute()
     }
 

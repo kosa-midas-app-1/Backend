@@ -8,7 +8,7 @@ package com.example.jobda.domain.staff.controller.dto.response
  * @date 2022-11-04
  * @version 1.0.0
  **/
-data class GetMyInfoResponse(
+data class StaffGetMyInfoResponse(
     val name: String,
     val phoneNumber: String,
     val email: String,
