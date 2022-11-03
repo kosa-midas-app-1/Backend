@@ -37,8 +37,8 @@ class ManagerEntity(
     @field:Column(columnDefinition = "VARCHAR(5)", nullable = false)
     val name: String,
 
-    @field:OneToOne(fetch = FetchType.LAZY)
-    @field:JoinColumn(name = "company_id",columnDefinition = "BINARY(16)")
+    @field:OneToOne(fetch = FetchType.LAZY, optional = true)
+    @field:JoinColumn(name = "company_id",columnDefinition = "BINARY(16)", nullable = true)
     val companyEntity: CompanyEntity?
 
 ) : BaseUUIDEntity() {
