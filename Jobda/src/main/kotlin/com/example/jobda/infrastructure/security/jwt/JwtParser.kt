@@ -27,7 +27,7 @@ import org.springframework.stereotype.Component
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.0.0
+ * @version 1.1.0
  **/
 @Component
 class JwtParser(
@@ -36,15 +36,10 @@ class JwtParser(
     private val managerDetailsService: CustomManagerDetailsService
 ) {
 
-    companion object {
-        private const val ACCESS = "access"
-        private const val REFRESH = "refresh"
-    }
-
     fun getAuthentication(token: String): Authentication {
         val claims = getClaims(token)
 
-        if (claims.header[Header.JWT_TYPE] != ACCESS) {
+        if (claims.header[Header.JWT_TYPE] != JwtProvider.ACCESS) {
             throw InvalidTokenException
         }
 
