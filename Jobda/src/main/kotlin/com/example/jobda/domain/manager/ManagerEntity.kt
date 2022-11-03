@@ -2,6 +2,7 @@ package com.example.jobda.domain.manager
 
 import com.example.jobda.common.BaseUUIDEntity
 import com.example.jobda.domain.company.CompanyEntity
+import java.util.UUID
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.FetchType
@@ -15,11 +16,13 @@ import javax.persistence.Table
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.0.0
+ * @version 1.0.1
  **/
 @Entity
 @Table(name = "tbl_manager")
 class ManagerEntity(
+
+    override val id: UUID,
 
     @field:Column(columnDefinition = "VARCHAR(255)", nullable = false)
     val email: String,
@@ -34,7 +37,7 @@ class ManagerEntity(
     val name: String,
 
     @field:ManyToOne(fetch = FetchType.LAZY)
-    @field:JoinColumn(columnDefinition = "VARCHAR(16)", nullable = false)
+    @field:JoinColumn(name = "company_id",columnDefinition = "VARCHAR(16)", nullable = false)
     val companyEntity: CompanyEntity?
 
 ) : BaseUUIDEntity() {
