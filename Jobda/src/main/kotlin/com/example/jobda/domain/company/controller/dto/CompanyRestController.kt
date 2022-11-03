@@ -26,7 +26,7 @@ import javax.validation.Valid
  *
  * @author ljcha
  * @date 2022-11-04
- * @version 1.0.0
+ * @version 1.1.0
  **/
 @RequestMapping("/companies")
 @RestController
@@ -60,7 +60,7 @@ class CompanyRestController(
         return getCompanyInfoService.execute()
     }
 
-    @GetMapping
+    @GetMapping("/work-system")
     fun getCompanyRule(): GetCompanyRuleResponse {
         return getCompanyRuleService.execute()
     }

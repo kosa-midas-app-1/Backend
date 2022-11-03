@@ -20,7 +20,7 @@ import javax.persistence.Table
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.4.1
+ * @version 1.4.2
  **/
 @Entity
 @Table(name = "tbl_company")
@@ -44,7 +44,7 @@ class CompanyEntity(
     @field:Column(columnDefinition = "VARCHAR(16)", nullable = false)
     val businessNumber: String,
 
-    @field:OneToOne(fetch = FetchType.LAZY, mappedBy = "tbl_company")
+    @field:OneToOne(fetch = FetchType.LAZY, mappedBy = "companyEntity")
     @field:JoinColumn(name = "manager_id",columnDefinition = "BINARY(16)", nullable = false)
     val managerEntity: ManagerEntity?
 
