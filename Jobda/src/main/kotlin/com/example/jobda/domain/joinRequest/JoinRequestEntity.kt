@@ -20,7 +20,7 @@ import javax.persistence.Table
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.0.0
+ * @version 1.0.1
  **/
 @Entity
 @Table(name = "tbl_join_request")
@@ -29,14 +29,14 @@ class JoinRequestEntity(
     @field:EmbeddedId
     val id: JoinRequestId,
 
-    @MapsId("staffId")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "staff_id", columnDefinition = "BINARY(16)", nullable = false)
+    @field:MapsId("staffId")
+    @field:ManyToOne(fetch = FetchType.LAZY)
+    @field:JoinColumn(name = "staff_id", columnDefinition = "BINARY(16)", nullable = false)
     val staffEntity: StaffEntity?,
 
-    @MapsId("companyId")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "company_id", columnDefinition = "BINARY(16)", nullable = false)
+    @field:MapsId("companyId")
+    @field:ManyToOne(fetch = FetchType.LAZY)
+    @field:JoinColumn(name = "company_id", columnDefinition = "BINARY(16)", nullable = false)
     val companyEntity: CompanyEntity?
 
 ) {
@@ -50,4 +50,5 @@ data class JoinRequestId(
 
     @field:Column(nullable = false)
     val companyId: UUID
+
 ) : Serializable
