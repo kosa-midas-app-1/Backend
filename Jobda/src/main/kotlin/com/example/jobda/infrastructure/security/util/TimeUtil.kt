@@ -18,4 +18,8 @@ class TimeUtil {
     fun betweenForMinutes(startAt: LocalDateTime, endAt: LocalDateTime): Long {
         return ChronoUnit.HOURS.between(startAt, endAt) * 60 + ChronoUnit.MINUTES.between(startAt, endAt)
     }
+
+    fun betweenHour(startAt: LocalDateTime, endAt: LocalDateTime): Long {
+        return ChronoUnit.HOURS.between(startAt, endAt)
+    }
 }

@@ -50,6 +50,17 @@ class WorkRecordEntity(
     val isWorkHome: Boolean
 
 ) {
+
+    fun unAttendance(): WorkRecordEntity {
+        return WorkRecordEntity(
+            id = id,
+            staffEntity = staffEntity,
+            companyEntity = companyEntity,
+            startAt = startAt,
+            endAt = LocalDateTime.now(),
+            isWorkHome = isWorkHome
+        )
+    }
 }
 
 @Embeddable

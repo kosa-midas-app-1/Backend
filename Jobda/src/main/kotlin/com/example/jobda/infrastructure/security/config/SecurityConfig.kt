@@ -64,6 +64,7 @@ class SecurityConfig(
             .antMatchers(HttpMethod.GET, "/staff/work-time/week").hasAuthority(Authority.STAFF.name)
             .antMatchers(HttpMethod.GET, "/staff/myself").hasAuthority(Authority.STAFF.name)
             .antMatchers(HttpMethod.PATCH, "/staff/myself").hasAuthority(Authority.STAFF.name)
+            .antMatchers(HttpMethod.PATCH, "/staff/attendance").hasAuthority(Authority.STAFF.name)
 
             //join-requests
             .antMatchers(HttpMethod.GET, "/join-requests").hasAuthority(Authority.MANAGER.name)

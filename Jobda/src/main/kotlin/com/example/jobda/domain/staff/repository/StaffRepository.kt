@@ -18,4 +18,5 @@ interface StaffRepository : CrudRepository<StaffEntity, UUID> {
     fun findByEmail(email: String): StaffEntity?
     fun countByCompanyEntityId(companyId: UUID): Int
     fun findByCompanyEntityIdAndNameContaining(companyId: UUID, name: String): List<StaffEntity>
+    fun findByCompanyEntityId(companyId: UUID): List<StaffEntity>
 }

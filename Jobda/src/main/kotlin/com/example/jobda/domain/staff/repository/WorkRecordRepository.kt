@@ -23,4 +23,9 @@ interface WorkRecordRepository : CrudRepository<WorkRecordEntity, WorkRecordId> 
         startAt: LocalDate,
         endAt: LocalDate
     ): List<WorkRecordEntity>
+
+    fun findByIdCompanyIdAndIdStaffId(
+        companyId: UUID,
+        staffId: UUID
+    ): List<WorkRecordEntity>
 }

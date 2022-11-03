@@ -90,4 +90,17 @@ class StaffEntity(
             companyEntity = companyEntity
         )
     }
+
+    fun updateStatus(status: Status): StaffEntity {
+        return StaffEntity(
+            id = id,
+            email = email,
+            password = password,
+            phoneNumber = phoneNumber,
+            name = name,
+            position = position,
+            status = status,
+            companyEntity = companyEntity
+        )
+    }
 }
