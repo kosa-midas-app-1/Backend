@@ -11,9 +11,10 @@ import java.util.UUID
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.0.0
+ * @version 1.2.0
  **/
 @Repository
 interface StaffRepository : CrudRepository<StaffEntity, UUID> {
     fun findByEmail(email: String): StaffEntity?
+    fun countByCompanyEntityId(companyId: UUID): Int
 }

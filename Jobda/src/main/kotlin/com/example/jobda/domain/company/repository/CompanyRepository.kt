@@ -11,8 +11,9 @@ import java.util.UUID
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.0.0
+ * @version 1.1.0
  **/
 @Repository
 interface CompanyRepository : CrudRepository<CompanyEntity, UUID> {
+    fun findByNameContaining(name: String?): List<CompanyEntity>
 }
