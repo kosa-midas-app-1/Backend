@@ -8,6 +8,7 @@ import javax.persistence.Entity
 import javax.persistence.FetchType
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
+import javax.persistence.OneToOne
 import javax.persistence.Table
 
 /**
@@ -16,13 +17,13 @@ import javax.persistence.Table
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.2.0
+ * @version 1.3.0
  **/
 @Entity
 @Table(name = "tbl_manager")
 class ManagerEntity(
 
-    override val id: UUID,
+    override val id: UUID = UUID(0, 0),
 
     @field:Column(columnDefinition = "VARCHAR(255)", nullable = false)
     val email: String,
@@ -36,8 +37,8 @@ class ManagerEntity(
     @field:Column(columnDefinition = "VARCHAR(5)", nullable = false)
     val name: String,
 
-    @field:ManyToOne(fetch = FetchType.LAZY)
-    @field:JoinColumn(name = "company_id",columnDefinition = "BINARY(16)", nullable = false)
+    @field:OneToOne(fetch = FetchType.LAZY)
+    @field:JoinColumn(name = "company_id",columnDefinition = "BINARY(16)")
     val companyEntity: CompanyEntity?
 
 ) : BaseUUIDEntity() {
