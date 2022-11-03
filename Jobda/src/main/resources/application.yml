@@ -7,8 +7,8 @@ spring:
     timeout-per-shutdown-phase: "60s"
 
   datasource:
-    username: ${DB_USERNAME:cos}
-    password: ${DB_PASSWORD:cos1234}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:@050912sun}
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://${DB_URL:localhost}:3306/${DB_NAME:test}?useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
 
