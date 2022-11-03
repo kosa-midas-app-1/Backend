@@ -27,7 +27,7 @@ import org.springframework.stereotype.Component
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.1.0
+ * @version 1.2.0
  **/
 @Component
 class JwtParser(
@@ -51,7 +51,7 @@ class JwtParser(
     private fun getClaims(token: String): Jws<Claims> {
         return try {
             Jwts.parserBuilder()
-                .setSigningKey(securityProperties.secretKey).build()
+                .setSigningKey(securityProperties.key).build()
                 .parseClaimsJws(token)
         } catch (e: Exception) {
             when (e) {

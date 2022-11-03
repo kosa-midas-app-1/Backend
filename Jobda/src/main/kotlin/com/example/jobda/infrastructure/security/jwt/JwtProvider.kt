@@ -8,7 +8,10 @@ import com.example.jobda.infrastructure.security.properties.SecurityProperties
 import io.jsonwebtoken.Header
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
+import io.jsonwebtoken.io.Decoders
+import io.jsonwebtoken.security.Keys
 import org.springframework.stereotype.Component
+import java.security.Key
 import java.time.LocalDateTime
 import java.util.Date
 import java.util.UUID
@@ -19,7 +22,7 @@ import java.util.UUID
  *
  * @author ljcha
  * @date 2022-11-04
- * @version 1.0.0
+ * @version 1.1.0
  **/
 @Component
 class JwtProvider(
@@ -42,7 +45,7 @@ class JwtProvider(
 
     private fun generateAccessToken(userId: UUID, authority: Authority) =
         Jwts.builder()
-            .signWith(SignatureAlgorithm.HS512, securityProperties.secretKey)
+            .signWith(securityProperties.key, SignatureAlgorithm.HS512)
             .setHeaderParam(Header.JWT_TYPE, ACCESS)
             .setId(userId.toString())
             .claim(AUTHORITY, authority.name)
@@ -52,7 +55,7 @@ class JwtProvider(
 
     private fun generateRefreshToken(userId: UUID, authority: Authority): String {
         val token = Jwts.builder()
-            .signWith(SignatureAlgorithm.HS512, securityProperties.secretKey)
+            .signWith(securityProperties.key, SignatureAlgorithm.HS512)
             .setHeaderParam(Header.JWT_TYPE, REFRESH)
             .setIssuedAt(Date())
             .setExpiration(Date(System.currentTimeMillis() + securityProperties.refreshExp))
