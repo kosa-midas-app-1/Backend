@@ -15,4 +15,5 @@ import java.util.UUID
  **/
 @Repository
 interface StaffRepository : CrudRepository<StaffEntity, UUID> {
+    fun findByEmail(email: String): StaffEntity?
 }
