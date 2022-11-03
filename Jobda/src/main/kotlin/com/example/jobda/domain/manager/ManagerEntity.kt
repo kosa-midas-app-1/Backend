@@ -17,7 +17,7 @@ import javax.persistence.Table
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.3.0
+ * @version 1.4.0
  **/
 @Entity
 @Table(name = "tbl_manager")
@@ -42,4 +42,15 @@ class ManagerEntity(
     val companyEntity: CompanyEntity?
 
 ) : BaseUUIDEntity() {
+
+    fun updateMyInfo(email: String, phoneNumber: String, name: String): ManagerEntity {
+        return ManagerEntity(
+            id = id,
+            email = email,
+            password = password,
+            phoneNumber = phoneNumber,
+            name = name,
+            companyEntity = companyEntity
+        )
+    }
 }
