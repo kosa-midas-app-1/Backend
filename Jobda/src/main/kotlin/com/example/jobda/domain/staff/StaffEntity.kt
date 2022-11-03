@@ -1,11 +1,15 @@
 package com.example.jobda.domain.staff
 
 import com.example.jobda.common.BaseUUIDEntity
+import com.example.jobda.domain.company.CompanyEntity
 import com.example.jobda.domain.staff.type.Status
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.EnumType
 import javax.persistence.Enumerated
+import javax.persistence.FetchType
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToOne
 import javax.persistence.Table
 
 /**
@@ -14,7 +18,7 @@ import javax.persistence.Table
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.0.0
+ * @version 1.1.0
  **/
 @Entity
 @Table(name = "tbl_staff")
@@ -37,7 +41,11 @@ class StaffEntity(
 
     @field:Enumerated(EnumType.STRING)
     @field:Column(columnDefinition = "VARCHAR(10)", nullable = false)
-    val status: Status
+    val status: Status,
+
+    @field:ManyToOne(fetch = FetchType.LAZY)
+    @field:JoinColumn(name = "company_id",columnDefinition = "VARCHAR(16)", nullable = false)
+    val companyEntity: CompanyEntity?
 
 ) : BaseUUIDEntity() {
 }
