@@ -4,6 +4,8 @@ import com.example.jobda.domain.staff.WorkRecordEntity
 import com.example.jobda.domain.staff.WorkRecordId
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
+import java.time.LocalDate
+import java.util.UUID
 
 /**
  *
@@ -11,8 +13,14 @@ import org.springframework.stereotype.Repository
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.0.0
+ * @version 1.1.0
  **/
 @Repository
 interface WorkRecordRepository : CrudRepository<WorkRecordEntity, WorkRecordId> {
+    fun findByIdCompanyIdAndIdStaffIdAndIdDateBetween(
+        companyId: UUID,
+        staffId: UUID,
+        startAt: LocalDate,
+        endAt: LocalDate
+    ): List<WorkRecordEntity>
 }
