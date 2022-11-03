@@ -20,7 +20,7 @@ import javax.persistence.Table
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.3.1
+ * @version 1.4.1
  **/
 @Entity
 @Table(name = "tbl_company")
@@ -49,4 +49,16 @@ class CompanyEntity(
     val managerEntity: ManagerEntity?
 
 ) : BaseUUIDEntity() {
+
+    fun updateCompanyInfo(name: String, profileImageUrl: String, workSystem: WorkSystem, applyWorkHome: Boolean): CompanyEntity {
+        return CompanyEntity(
+            id = id,
+            name = name,
+            profileImageUrl = profileImageUrl,
+            workSystem = workSystem,
+            applyWorkHome = applyWorkHome,
+            businessNumber = businessNumber,
+            managerEntity = managerEntity
+        )
+    }
 }
