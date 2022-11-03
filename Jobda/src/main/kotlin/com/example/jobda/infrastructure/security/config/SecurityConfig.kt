@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 
 /**
@@ -15,7 +16,7 @@ import org.springframework.security.web.SecurityFilterChain
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.0.0
+ * @version 2.0.0
  **/
 @Configuration
 class SecurityConfig(
@@ -35,10 +36,14 @@ class SecurityConfig(
 
         http
             .authorizeRequests()
+            .antMatchers("/auth/**").permitAll()
 
         http
             .apply(FilterConfig(jwtParser, objectMapper))
 
         return http.build()
     }
+
+    @Bean
+    protected fun passwordEncoder() = BCryptPasswordEncoder()
 }
