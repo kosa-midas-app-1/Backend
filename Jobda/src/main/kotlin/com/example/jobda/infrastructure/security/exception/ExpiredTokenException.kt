@@ -1,6 +1,6 @@
 package com.example.jobda.infrastructure.security.exception
 
-import com.example.jobda.infrastructure.error.custom.CustomErrorCode
+import com.example.jobda.infrastructure.error.GlobalErrorCode
 import com.example.jobda.infrastructure.error.custom.CustomException
 
 /**
@@ -12,5 +12,5 @@ import com.example.jobda.infrastructure.error.custom.CustomException
  * @version 1.0.0
  **/
 object ExpiredTokenException : CustomException(
-    CustomErrorCode.EXPIRED_TOKEN
+    GlobalErrorCode.EXPIRED_TOKEN
 )

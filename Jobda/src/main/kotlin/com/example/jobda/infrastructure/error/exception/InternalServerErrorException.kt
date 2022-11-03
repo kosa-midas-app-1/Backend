@@ -1,6 +1,6 @@
 package com.example.jobda.infrastructure.error.exception
 
-import com.example.jobda.infrastructure.error.custom.CustomErrorCode
+import com.example.jobda.infrastructure.error.GlobalErrorCode
 import com.example.jobda.infrastructure.error.custom.CustomException
 
 /**
@@ -12,6 +12,6 @@ import com.example.jobda.infrastructure.error.custom.CustomException
  * @version 1.0.0
  **/
 object InternalServerErrorException : CustomException(
-    CustomErrorCode.INTERNAL_SERVER_ERROR
+    GlobalErrorCode.INTERNAL_SERVER_ERROR
 ) {
 }

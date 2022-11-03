@@ -1,6 +1,5 @@
 package com.example.jobda.infrastructure.error
 
-import com.example.jobda.infrastructure.error.custom.CustomErrorCode
 import com.example.jobda.infrastructure.error.response.BindErrorResponse
 import org.springframework.http.HttpStatus
 import org.springframework.validation.BindException
@@ -8,7 +7,6 @@ import org.springframework.validation.FieldError
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestControllerAdvice
-import org.springframework.web.servlet.NoHandlerFoundException
 
 /**
  *
@@ -32,7 +30,7 @@ class GlobalErrorHandler {
         }
 
         return BindErrorResponse(
-            status = CustomErrorCode.BAD_REQUEST.status(),
+            status = GlobalErrorCode.BAD_REQUEST.status(),
             fieldError = listOf(errorMap)
         )
     }

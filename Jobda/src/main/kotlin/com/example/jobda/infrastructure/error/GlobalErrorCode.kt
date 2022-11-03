@@ -1,4 +1,6 @@
-package com.example.jobda.infrastructure.error.custom
+package com.example.jobda.infrastructure.error
+
+import com.example.jobda.infrastructure.error.custom.CustomErrorProperty
 
 /**
  *
@@ -6,9 +8,9 @@ package com.example.jobda.infrastructure.error.custom
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.0.1
+ * @version 1.1.1
  **/
-enum class CustomErrorCode(
+enum class GlobalErrorCode(
     private val status: Int,
     private val message: String
 ) : CustomErrorProperty {
