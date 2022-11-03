@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.0.0
+ * @version 2.0.0
  **/
 class JwtFilter(
     private val jwtParser: JwtParser
@@ -30,12 +30,17 @@ class JwtFilter(
         filterChain: FilterChain
     ) {
         val token = resolvedToken(request)
-        SecurityContextHolder.getContext().authentication = jwtParser.getAuthentication(token)
+
+        if(token != null) {
+            SecurityContextHolder.getContext().authentication = jwtParser.getAuthentication(token)
+        } else {
+            SecurityContextHolder.clearContext()
+        }
 
         filterChain.doFilter(request, response)
     }
 
-    private fun resolvedToken(request: HttpServletRequest): String {
+    private fun resolvedToken(request: HttpServletRequest): String? {
         val bearerToken: String? = request.getHeader(HttpHeaders.AUTHORIZATION)
 
         bearerToken?.let {
@@ -44,6 +49,6 @@ class JwtFilter(
             }
         }
 
-        throw InvalidTokenException
+        return null
     }
 }

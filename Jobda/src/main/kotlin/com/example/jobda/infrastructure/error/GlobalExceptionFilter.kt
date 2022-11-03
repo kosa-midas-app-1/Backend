@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.0.0
+ * @version 2.0.0
  **/
 class GlobalExceptionFilter(
     private val objectMapper: ObjectMapper
@@ -32,7 +32,7 @@ class GlobalExceptionFilter(
             filterChain.doFilter(request, response)
         } catch (e: Exception) {
             when (e) {
-                is CustomException -> errorToJson((e.cause as CustomException).errorProperty, response)
+                is CustomException -> errorToJson(e.errorProperty, response)
                 else -> {
                     errorToJson(InternalServerErrorException.errorProperty, response)
                     e.printStackTrace()
