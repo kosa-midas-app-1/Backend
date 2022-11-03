@@ -18,7 +18,7 @@ import org.springframework.security.web.SecurityFilterChain
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 4.0.0
+ * @version 5.0.0
  **/
 @Configuration
 class SecurityConfig(
@@ -52,6 +52,18 @@ class SecurityConfig(
             .antMatchers(HttpMethod.GET, "/companies/search").permitAll()
             .antMatchers(HttpMethod.GET, "/companies").hasAnyAuthority(Authority.MANAGER.name, Authority.STAFF.name)
 
+            //staff
+            .antMatchers(HttpMethod.GET, "/staff").hasAuthority(Authority.MANAGER.name)
+            .antMatchers(HttpMethod.GET, "/staff/{staff-id}").hasAuthority(Authority.MANAGER.name)
+            .antMatchers(HttpMethod.PATCH, "/staff/{staff-id}").hasAuthority(Authority.MANAGER.name)
+            .antMatchers(HttpMethod.PATCH, "/staff/leave-early{staff-id}").hasAuthority(Authority.MANAGER.name)
+            .antMatchers(HttpMethod.GET, "/staff/average").hasAuthority(Authority.MANAGER.name)
+            .antMatchers(HttpMethod.GET, "/staff/timeline").hasAuthority(Authority.MANAGER.name)
+            .antMatchers(HttpMethod.GET,"/staff/today").hasAuthority(Authority.MANAGER.name)
+            .antMatchers(HttpMethod.GET, "/staff/work-time").hasAuthority(Authority.STAFF.name)
+            .antMatchers(HttpMethod.GET, "/staff/work-time/week").hasAuthority(Authority.STAFF.name)
+            .antMatchers(HttpMethod.GET, "/staff/myself").hasAuthority(Authority.STAFF.name)
+            .antMatchers(HttpMethod.PATCH, "/staff/myself").hasAuthority(Authority.STAFF.name)
         http
             .apply(FilterConfig(jwtParser, objectMapper))
 
