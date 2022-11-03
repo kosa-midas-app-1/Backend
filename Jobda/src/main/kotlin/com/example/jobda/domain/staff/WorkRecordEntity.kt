@@ -21,7 +21,7 @@ import javax.persistence.Table
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.0.0
+ * @version 1.1.0
  **/
 @Entity
 @Table(name = "tbl_work_record")
@@ -44,7 +44,7 @@ class WorkRecordEntity(
     val startAt: LocalDateTime,
 
     @field:Column(columnDefinition = "DATETIME", nullable = false)
-    val endAt: LocalDateTime,
+    val endAt: LocalDateTime?,
 
     @field:Column(columnDefinition = "TINYINT(1)", nullable = false)
     val isWorkHome: Boolean
