@@ -6,7 +6,7 @@ package com.example.jobda.infrastructure.error.custom
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.0.0
+ * @version 1.0.1
  **/
 enum class CustomErrorCode(
     private val status: Int,
@@ -21,7 +21,7 @@ enum class CustomErrorCode(
     INVALID_ROLE(401, "Invalid Role"),
 
     INTERNAL_SERVER_ERROR(500, "Internal Server Error");
-    
+
     override fun status(): Int = status
     override fun message(): String = message
 }
