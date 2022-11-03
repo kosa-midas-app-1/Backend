@@ -11,6 +11,7 @@ import javax.persistence.Enumerated
 import javax.persistence.FetchType
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
+import javax.persistence.OneToOne
 import javax.persistence.Table
 
 /**
@@ -19,13 +20,13 @@ import javax.persistence.Table
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.2.1
+ * @version 1.3.1
  **/
 @Entity
 @Table(name = "tbl_company")
 class CompanyEntity(
 
-    override val id: UUID,
+    override val id: UUID = UUID(0, 0),
 
     @field:Column(columnDefinition = "VARCHAR(40)", nullable = false)
     val name: String,
@@ -43,7 +44,7 @@ class CompanyEntity(
     @field:Column(columnDefinition = "VARCHAR(16)", nullable = false)
     val businessNumber: String,
 
-    @field:ManyToOne(fetch = FetchType.LAZY)
+    @field:OneToOne(fetch = FetchType.LAZY, mappedBy = "tbl_company")
     @field:JoinColumn(name = "manager_id",columnDefinition = "BINARY(16)", nullable = false)
     val managerEntity: ManagerEntity?
 
