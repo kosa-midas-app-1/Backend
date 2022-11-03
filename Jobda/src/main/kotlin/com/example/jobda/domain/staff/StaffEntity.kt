@@ -3,6 +3,7 @@ package com.example.jobda.domain.staff
 import com.example.jobda.common.BaseUUIDEntity
 import com.example.jobda.domain.company.CompanyEntity
 import com.example.jobda.domain.staff.type.Status
+import java.util.UUID
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.EnumType
@@ -18,11 +19,13 @@ import javax.persistence.Table
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.1.0
+ * @version 1.2.0
  **/
 @Entity
 @Table(name = "tbl_staff")
 class StaffEntity(
+
+    override val id: UUID,
 
     @field:Column(columnDefinition = "VARCHAR(255)", nullable = false)
     val email: String,
