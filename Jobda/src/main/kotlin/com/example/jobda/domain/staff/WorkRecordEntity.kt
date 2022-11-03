@@ -48,7 +48,7 @@ class WorkRecordEntity(
 
     @field:Column(columnDefinition = "TINYINT(1)", nullable = false)
     val isWorkHome: Boolean
-    
+
 ) {
 }
 
