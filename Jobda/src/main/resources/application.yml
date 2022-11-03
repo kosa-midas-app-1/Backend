@@ -1,0 +1,46 @@
+server:
+  port: 8080
+  shutdown: graceful
+
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: "60s"
+
+  datasource:
+    username: ${DB_USERNAME:cos}
+    password: ${DB_PASSWORD:cos1234}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${DB_URL:localhost}:3306/${DB_NAME:test}?useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
+
+  jpa:
+    hibernate:
+      ddl-auto: ${DDL:create}
+    properties:
+      hibernate:
+        format_sql: ${FORMAT_SQL:true}
+        show_sql: ${SHOW_SQL:true}
+
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
+  redis:
+    port: ${REDIS_PORT:6379}
+    host: ${REDIS_HOST:localhost}
+
+jwt:
+  secret-key: ${SECRET_KEY:SDAGKAHGKAJSGDAJSGDSJA}
+  access-exp: ${ACCESS_EXP:3000}
+  refresh-exp: ${REFRESH-EXP:10000}
+
+cloud:
+  aws:
+    credentials:
+      access-key: ${AWS_ACCESS:access}
+      secret-key: ${AWS_SECRET:secret}
+    region:
+      static: ${AWS_REGION:ap-northeast-2}
+      auto: false
+    stack:
+      auto: false
+    s3:
+      bucket: ${BUCKET_NAME:dms}
