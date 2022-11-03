@@ -18,7 +18,7 @@ import org.springframework.security.web.SecurityFilterChain
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 3.0.0
+ * @version 4.0.0
  **/
 @Configuration
 class SecurityConfig(
@@ -38,9 +38,19 @@ class SecurityConfig(
 
         http
             .authorizeRequests()
+
+            //auth
             .antMatchers("/auth/**").permitAll()
+
+            //managers
             .antMatchers(HttpMethod.POST, "/managers").hasAuthority(Authority.MANAGER.name)
             .antMatchers(HttpMethod.GET, "/managers").hasAuthority(Authority.MANAGER.name)
+
+            //companies
+            .antMatchers(HttpMethod.PATCH, "/companies/work-time").hasAuthority(Authority.MANAGER.name)
+            .antMatchers(HttpMethod.PATCH, "/companies").hasAuthority(Authority.MANAGER.name)
+            .antMatchers(HttpMethod.GET, "/companies/search").permitAll()
+            .antMatchers(HttpMethod.GET, "/companies").hasAnyAuthority(Authority.MANAGER.name, Authority.STAFF.name)
 
         http
             .apply(FilterConfig(jwtParser, objectMapper))
