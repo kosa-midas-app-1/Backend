@@ -4,11 +4,14 @@ import com.example.jobda.domain.auth.controller.dto.request.SignUpManagerRequest
 import com.example.jobda.domain.auth.controller.dto.response.TokenResponse
 import com.example.jobda.domain.auth.type.Authority
 import com.example.jobda.domain.company.CompanyEntity
+import com.example.jobda.domain.company.RequiredWorkTimeEntity
 import com.example.jobda.domain.company.repository.CompanyRepository
+import com.example.jobda.domain.company.repository.RequiredWorkTimeRepository
 import com.example.jobda.domain.manager.ManagerEntity
 import com.example.jobda.domain.manager.repository.ManagerRepository
 import com.example.jobda.infrastructure.security.jwt.JwtProvider
 import org.springframework.stereotype.Service
+import java.time.LocalDateTime
 
 /**
  *
@@ -16,13 +19,14 @@ import org.springframework.stereotype.Service
  *
  * @author ljcha
  * @date 2022-11-04
- * @version 1.0.0
+ * @version 2.0.0
  **/
 @Service
 class SignUpManagerService(
     private val jwtProvider: JwtProvider,
     private val managerRepository: ManagerRepository,
-    private val companyRepository: CompanyRepository
+    private val companyRepository: CompanyRepository,
+    private val requiredWorkTimeRepository: RequiredWorkTimeRepository
 ) {
 
     fun execute(request: SignUpManagerRequest): TokenResponse {
@@ -37,7 +41,7 @@ class SignUpManagerService(
 
         val managerEntity = managerRepository.save(manager)
 
-        companyRepository.save(
+        val companyEntity = companyRepository.save(
             CompanyEntity(
                 name = request.companyName,
                 profileImageUrl = request.companyProfileImageUrl,
@@ -47,6 +51,15 @@ class SignUpManagerService(
                 managerEntity = managerEntity
             )
         )
+
+        val requiredWorkTime = RequiredWorkTimeEntity(
+            companyId = companyEntity.id,
+            companyEntity = companyEntity,
+            startAt = LocalDateTime.of(2022, 11, 4, 14, 0),
+            endAt = LocalDateTime.of(2022, 11, 4, 15, 0)
+        )
+
+        requiredWorkTimeRepository.save(requiredWorkTime)
 
         return jwtProvider.receiveToken(managerEntity.id, Authority.MANAGER)
     }
