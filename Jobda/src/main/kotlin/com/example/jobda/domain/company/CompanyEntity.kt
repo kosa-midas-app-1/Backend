@@ -1,9 +1,16 @@
 package com.example.jobda.domain.company
 
 import com.example.jobda.common.BaseUUIDEntity
+import com.example.jobda.domain.company.type.WorkSystem
+import com.example.jobda.domain.manager.ManagerEntity
 import java.util.UUID
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
+import javax.persistence.FetchType
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToOne
 import javax.persistence.Table
 
 /**
@@ -12,7 +19,7 @@ import javax.persistence.Table
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.0.0
+ * @version 1.0.1
  **/
 @Entity
 @Table(name = "tbl_company")
@@ -26,8 +33,9 @@ class CompanyEntity(
     @field:Column(columnDefinition = "VARCHAR(255)", nullable = false)
     val profileImageUrl: String,
 
+    @field:Enumerated(EnumType.STRING)
     @field:Column(columnDefinition = "VARCHAR(11)", nullable = false)
-    val workSystem: String,
+    val workSystem: WorkSystem,
 
     @field:Column(columnDefinition = "TINYINT(1)", nullable = false)
     val applyWorkHome: Boolean,
@@ -35,7 +43,10 @@ class CompanyEntity(
     @field:Column(columnDefinition = "VARCHAR(16)", nullable = false)
     val businessNumber: String,
 
-    //TODO 관리자 아이디
+    @field:ManyToOne(fetch = FetchType.LAZY)
+    @field:JoinColumn(name = "manager_id",columnDefinition = "VARCHAR(16)", nullable = false)
+    val managerEntity: ManagerEntity?
+
 
 ) : BaseUUIDEntity() {
 }
