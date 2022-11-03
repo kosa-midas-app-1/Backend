@@ -8,7 +8,7 @@ import com.example.jobda.infrastructure.error.custom.CustomErrorProperty
  *
  * @author ljcha
  * @date 2022-11-04
- * @version 1.0.0
+ * @version 1.1.0
  **/
 enum class AuthErrorCode(
     private val status: Int,
@@ -17,7 +17,8 @@ enum class AuthErrorCode(
 
     INVALID_PASSWORD_EXCEPTION(400, "Invalid Password"),
     AUTH_CODE_NOT_FOUND(404, "Auth Code Not Found"),
-    EMAIL_NOT_FOUND(400, "Email Not Found")
+    EMAIL_NOT_FOUND(400, "Email Not Found"),
+    EMAIL_ALREADY_EXISTS(409, "Email Already Exists")
     ;
 
     override fun status(): Int = status
