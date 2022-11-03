@@ -51,4 +51,43 @@ class StaffEntity(
     val companyEntity: CompanyEntity?
 
 ) : BaseUUIDEntity() {
+
+    fun updateStaffInfo(email: String, phoneNumber: String, position: String): StaffEntity {
+        return StaffEntity(
+            id = id,
+            email = email,
+            password = password,
+            phoneNumber = phoneNumber,
+            name = name,
+            position = position,
+            status = status,
+            companyEntity = companyEntity
+        )
+    }
+
+    fun updateStaffLeaveEarly(): StaffEntity {
+        return StaffEntity(
+            id = id,
+            email = email,
+            password = password,
+            phoneNumber = phoneNumber,
+            name = name,
+            position = position,
+            status = Status.LEAVE_EARLY,
+            companyEntity = companyEntity
+        )
+    }
+
+    fun approveJoinRequest(companyEntity: CompanyEntity): StaffEntity {
+        return StaffEntity(
+            id = id,
+            email = email,
+            password = password,
+            phoneNumber = phoneNumber,
+            name = name,
+            position = position,
+            status = status,
+            companyEntity = companyEntity
+        )
+    }
 }

@@ -64,6 +64,14 @@ class SecurityConfig(
             .antMatchers(HttpMethod.GET, "/staff/work-time/week").hasAuthority(Authority.STAFF.name)
             .antMatchers(HttpMethod.GET, "/staff/myself").hasAuthority(Authority.STAFF.name)
             .antMatchers(HttpMethod.PATCH, "/staff/myself").hasAuthority(Authority.STAFF.name)
+
+            //join-requests
+            .antMatchers(HttpMethod.GET, "/join-requests").hasAuthority(Authority.MANAGER.name)
+            .antMatchers(HttpMethod.PATCH, "/join-requests/{staff-id}").hasAuthority(Authority.MANAGER.name)
+            .antMatchers(HttpMethod.DELETE, "/join-requests/{staff-id}").hasAuthority(Authority.MANAGER.name)
+            .antMatchers(HttpMethod.POST, "/join-requests/{company-id}").hasAuthority(Authority.STAFF.name)
+
+
         http
             .apply(FilterConfig(jwtParser, objectMapper))
 

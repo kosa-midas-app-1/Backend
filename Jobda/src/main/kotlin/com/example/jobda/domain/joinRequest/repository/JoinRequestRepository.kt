@@ -4,6 +4,7 @@ import com.example.jobda.domain.joinRequest.JoinRequestEntity
 import com.example.jobda.domain.joinRequest.JoinRequestId
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
+import java.util.UUID
 
 /**
  *
@@ -15,4 +16,6 @@ import org.springframework.stereotype.Repository
  **/
 @Repository
 interface JoinRequestRepository : CrudRepository<JoinRequestEntity, JoinRequestId> {
+    fun findByIdCompanyId(companyId: UUID): List<JoinRequestEntity>
+    fun findByIdStaffId(staffId: UUID): JoinRequestEntity?
 }
