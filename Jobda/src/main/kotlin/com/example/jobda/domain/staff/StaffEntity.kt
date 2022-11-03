@@ -19,13 +19,13 @@ import javax.persistence.Table
  *
  * @author ljcha
  * @date 2022-11-03
- * @version 1.3.0
+ * @version 1.4.0
  **/
 @Entity
 @Table(name = "tbl_staff")
 class StaffEntity(
 
-    override val id: UUID,
+    override val id: UUID = UUID(0, 0),
 
     @field:Column(columnDefinition = "VARCHAR(255)", nullable = false)
     val email: String,
